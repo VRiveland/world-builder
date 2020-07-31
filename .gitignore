@@ -130,3 +130,6 @@ dmypy.json
 
 #notes
 notes.txt
+
+#visual studio stuff
+.vscode
