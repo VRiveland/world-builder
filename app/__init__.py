@@ -1,7 +1,6 @@
 from flask import Flask
 from flask_bootstrap import Bootstrap
 import mysql.connector
-from mysql.connector import errorcode
 
 config = {
   'user': 'root',
@@ -11,8 +10,9 @@ config = {
   'raise_on_warnings': True,
 }
 
-conn = mysql.connector.connect(**config)
-cur = conn.cursor()
+mydtb = mysql.connector.connect(**config)
+cur = mydtb.cursor()
+
 app = Flask(__name__)
 
 Bootstrap(app)

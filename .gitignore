@@ -128,8 +128,9 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-#notes
+#notes and dev stuff
 notes.txt
+devInput.sql
 
 #visual studio stuff
 .vscode
