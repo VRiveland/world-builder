@@ -11,7 +11,7 @@ config = {
 }
 
 mydtb = mysql.connector.connect(**config)
-cur = mydtb.cursor()
+cur = mydtb.cursor(prepared=True)
 
 app = Flask(__name__)
 

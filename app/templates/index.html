@@ -11,10 +11,13 @@
         {% for world in worlds %}
             <div class="col-sm-12 col-md-6 col-lg-3 p-md-1">
                 <div class="border">
-                    <!--TODO: add world info-->
                     <h3 class="title">{{ world[1] }}</h3>
+                    <!-- horizontal line -->
                     <div class="p-md-1">
-                        {{ world[2] }}
+                        <P>
+                           {{ world[2] }} 
+                        </P>
+                        <a class="btn btn-primary" href={{ url_for('world', worldTitle=world[1], worldId=world[0] ) }}>Go to {{ world[1] }}</a>
                     </div>
                 </div>
             </div>

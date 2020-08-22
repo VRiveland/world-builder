@@ -3,7 +3,16 @@ USE mydtb;
 CREATE TABLE IF NOT EXISTS Worlds (
     world_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(32),
-    descr TEXT
+    descr TEXT,
+    story TEXT
+);
+
+CREATE TABLE IF NOT EXISTS WorldBoxes (
+    world_id INT UNSIGNED NOT NULL PRIMARY KEY,
+    story BOOLEAN,
+    events BOOLEAN,
+    countries BOOLEAN,
+    FOREIGN KEY (world_id) REFERENCES Worlds (world_id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS Countries (
@@ -17,6 +26,7 @@ CREATE TABLE IF NOT EXISTS Events (
     event_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(64),
     descr TEXT,
+    story TEXT,
     event_type VARCHAR(32),
     start_date SMALLINT,
     start_month SMALLINT,

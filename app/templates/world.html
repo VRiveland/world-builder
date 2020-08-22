@@ -1,0 +1,29 @@
+{% extends "worldBase.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block jumbotron %}
+    <h1 class="display-4">{{ world[1] }}</h1>
+    <!-- a horizontal line that doesn't reach all the way -->
+    <p class="lead">{{ world[2] }}</p>
+{% endblock %}
+{% block worldContent %}
+<div class="card-columns">
+    {% if showStory == true %}
+        <div class="card">
+            <div class="card-header">World Story</div>
+            <div class="card-body text-center scrollable">
+                <p class="card-text">{{ world[3] }}</p>
+            </div>
+        </div>
+    {% endif %}
+    {% if showEvents == true %}
+        <!--
+            make a box for events and populate with a few of them
+
+            How should I choose which ones to show???
+
+            should it be scrollable??
+            should it contain short description??
+        -->
+    {% endif %}
+</div>
+{% endblock %}
