@@ -1,0 +1,10 @@
+{% extends "worldBase.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block jumbotron %}
+<h1 class="display-4">{{ event[1] }}</h1>
+<h4>{{ worldContent[0][1] }}</h4>
+    <!-- a horizontal line that doesn't reach all the way -->
+<p class="lead">{{ event[2] }}</p>
+{% endblock %}
+{% block worldContent %}
+{% endblock %}

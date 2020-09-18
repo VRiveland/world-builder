@@ -25,3 +25,7 @@ def getWorldEvents(worldId):
 def getWorldBoxes(worldId):
     query = ("SELECT * FROM WorldBoxes WHERE world_id=%s")
     return executeWithVariables(query, worldId)
+
+def getEvent(eventId):
+    query = ("SELECT * FROM Events WHERE event_id=%s")
+    return executeWithVariables(query, eventId)

@@ -1,9 +1,9 @@
 {% extends "worldBase.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 {% block jumbotron %}
-    <h1 class="display-4">{{ world[1] }}</h1>
+    <h1 class="display-4">{{ worldContent[0][1] }}</h1>
     <!-- a horizontal line that doesn't reach all the way -->
-    <p class="lead">{{ world[2] }}</p>
+    <p class="lead">{{ worldContent[0][2] }}</p>
 {% endblock %}
 {% block worldContent %}
 <div class="card-columns">
@@ -11,19 +11,28 @@
         <div class="card">
             <div class="card-header">World Story</div>
             <div class="card-body text-center scrollable">
-                <p class="card-text">{{ world[3] }}</p>
+                <p class="card-text">{{ worldContent[0][3] }}</p>
             </div>
         </div>
     {% endif %}
     {% if showEvents == true %}
-        <!--
-            make a box for events and populate with a few of them
-
-            How should I choose which ones to show???
-
-            should it be scrollable??
-            should it contain short description??
-        -->
+        <div class="card">
+            <div class="card-header">Events</div>
+            <div class="card-body text-center scrollable">
+                <ul class="list-unstyled">
+                    <!-- should I only show the first X amount and remove the scrollable class from card-body? -->
+                    {% for event in worldContent[1] %}
+                        <li>
+                            <a class="component" href={{ url_for('world_event', worldId=worldContent[0][0], eventId=event[0], worldTitle=worldContent[0][1]) }}>
+                                <h3>{{ event[1] }}</h3>
+                                <!-- horizontal line -->
+                                <p>{{ event[2] }}</p>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
     {% endif %}
 </div>
 {% endblock %}

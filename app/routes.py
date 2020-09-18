@@ -14,4 +14,12 @@ def index():
 def world(worldTitle, worldId):
     worldContent = helper.getWorldContent(worldId)
     boxes = db.getWorldBoxes(worldId)
-    return render_template('world.html', title=worldTitle, world=worldContent[0], worldEvents=worldContent[1], showEvents=helper.checkBox(boxes[0], 2), showStory=helper.checkBox(boxes[0], 1))
+    return render_template('world.html', title=worldTitle, worldContent=worldContent, showEvents=helper.checkBox(boxes[0], 2), showStory=helper.checkBox(boxes[0], 1))
+
+@app.route('/world/<worldTitle>/worldId=<worldId>/worldEvent/eventId=<eventId>')
+def world_event(worldTitle, worldId, eventId):
+    event = db.getEvent(eventId)
+    print(event[0])
+    worldContent = helper.getWorldContent(worldId)
+    #TODO: get event boxes
+    return render_template('event.html', title=event[0][1], worldContent=worldContent, event=event[0])
