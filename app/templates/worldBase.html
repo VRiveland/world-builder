@@ -1,12 +1,8 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 {% block content %}
-<div class="jumbotron">
-    {% block jumbotron %}
-    {% endblock %}
-</div>
 <div class="wrapper">
-    <div id="sidebar">
+    <div id="sidebar" class="active">
         <div id="close">
             <i class="fas fa-arrow-left"></i>
         </div>
@@ -14,12 +10,47 @@
             {{worldContent[0][1]}} Content
         </div>
         <ul class="list-unstyled components">
-            
+            <li class="active">
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li>
+                        <a href="#">Home 1</a>
+                    </li>
+                    <li>
+                        <a href="#">Home 2</a>
+                    </li>
+                    <li>
+                        <a href="#">Home 3</a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </div>
-    <div id="content">
+    <div id="content" class="p-2 active">
+        <div class="jumbotron">
+            {% block jumbotron %}
+            {% endblock %}
+        </div>
+        <div class="row justify-content-center no-gutters">
+            <nav class="navbar navbar-expand-lg">
+                <button type="button" id="sidebarCollapse" class="btn btn-info">
+                    <i class="fas fa-align-left"></i>
+                    <span>Toggle Sidebar</span>
+                </button>
+            </nav>
+        </div>
         {% block worldContent %}
         {% endblock %}
     </div>
 </div>
+{% endblock %}
+{% block scripts %}
+<script>
+$(document).ready(function () {
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
+        $('#content').toggleClass('active');
+    });
+});
+</script>
 {% endblock %}
