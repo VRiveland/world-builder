@@ -10,18 +10,15 @@
             {{worldContent[0][1]}} Content
         </div>
         <ul class="list-unstyled components">
-            <li class="active">
-                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
-                <ul class="collapse list-unstyled" id="homeSubmenu">
-                    <li>
-                        <a href="#">Home 1</a>
-                    </li>
-                    <li>
-                        <a href="#">Home 2</a>
-                    </li>
-                    <li>
-                        <a href="#">Home 3</a>
-                    </li>
+            <!-- add active class to the correct <li> based on page? -->
+            <li>
+                <a href="#eventsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">World Events</a>
+                <ul class="collapse list-unstyled" id="eventsSubmenu">
+                    {% for event in worldContent[1] %}
+                        <li>
+                            <a href={{ url_for("world_event", worldTitle=worldContent[0][1], worldId=worldContent[0][0], eventId=event[0]) }}>{{ event[1] }}</a>
+                        </li>
+                    {% endfor %}
                 </ul>
             </li>
         </ul>
