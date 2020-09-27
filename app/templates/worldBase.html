@@ -2,21 +2,24 @@
 {% import "bootstrap/wtf.html" as wtf %}
 {% block content %}
 <div class="wrapper">
-    <div id="sidebar" class="active">
+    <div id="sidebar" class="active p-2">
         <div id="close">
             <i class="fas fa-arrow-left"></i>
         </div>
         <div id="sidebar-header">
-            {{worldContent[0][1]}} Content
+            <h2>
+                {{worldContent[0][1]}} Content
+            </h2>
         </div>
         <ul class="list-unstyled components">
             <!-- add active class to the correct <li> based on page? -->
+            <!-- TODO: check whether any world events exists -->
             <li>
-                <a href="#eventsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">World Events</a>
+                <a href="#eventsSubmenu" data-toggle="collapse" aria-expanded="false" class="component"><p>World Events</p></a>
                 <ul class="collapse list-unstyled" id="eventsSubmenu">
                     {% for event in worldContent[1] %}
                         <li>
-                            <a href={{ url_for("world_event", worldTitle=worldContent[0][1], worldId=worldContent[0][0], eventId=event[0]) }}>{{ event[1] }}</a>
+                            <a href={{ url_for("world_event", worldTitle=worldContent[0][1], worldId=worldContent[0][0], eventId=event[0]) }} class="component"><h6>{{ event[1] }}</h6></a>
                         </li>
                     {% endfor %}
                 </ul>
