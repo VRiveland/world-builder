@@ -10,6 +10,9 @@ def executeWithoutVariables(query):
     rows = cur.fetchall()
     return rows
 
+def executeWithoutReturn(query, variables):
+    cur.execute(query, variables)
+
 def getWorlds():
     query = "SELECT * FROM Worlds"
     return executeWithoutVariables(query)
@@ -17,6 +20,10 @@ def getWorlds():
 def getWorld(worldId):
     query = ("SELECT * FROM Worlds WHERE world_id=%s")
     return executeWithVariables(query, worldId)
+
+def addWorld(worldTitle, description, story):
+    query = ("INSERT INTO Worlds (title, descr, story) Values (%s, %s, %s)")
+    executeWithoutReturn(query, [worldTitle, description, story])
 
 def getWorldEvents(worldId):
     query = ("SELECT * FROM Events WHERE world_id=%s AND event_type='world'")
