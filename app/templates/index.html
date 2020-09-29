@@ -7,10 +7,13 @@
         Worlds overview
     </h1>
 </div>
+<div class="row justify-content-center">
+    <a class="btn btn-info m-2 col-11" href={{ url_for('add_world') }}>Add New World</a>
+</div>
 <div class="container-fluid">
     <div class="row">
         {% for world in worlds %}
-            <div class="col-sm-12 col-md-6 col-lg-3 p-md-1">
+            <div class="col-sm-12 col-md-6 col-lg-3 p-md-1 text-center">
                 <div class="border">
                     <h3 class="title">{{ world[1] }}</h3>
                     <!-- horizontal line -->
@@ -18,7 +21,7 @@
                         <P>
                            {{ world[2] }}
                         </P>
-                        <a class="btn btn-primary" href={{ url_for('world', worldTitle=world[1], worldId=world[0] ) }}>Go to {{ world[1] }}</a>
+                        <a class="btn btn-info" href={{ url_for('world', worldTitle=world[1], worldId=world[0] ) }}>Go to {{ world[1] }}</a>
                     </div>
                 </div>
             </div>

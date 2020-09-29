@@ -16,6 +16,7 @@
             <!-- TODO: check whether any world events exists -->
             <li>
                 <a href="#eventsSubmenu" data-toggle="collapse" aria-expanded="false" class="component"><p>World Events</p></a>
+                {% if worldContent[1] != None %}
                 <ul class="collapse list-unstyled" id="eventsSubmenu">
                     {% for event in worldContent[1] %}
                         <li>
@@ -23,6 +24,7 @@
                         </li>
                     {% endfor %}
                 </ul>
+                {% endif %}
             </li>
         </ul>
     </div>

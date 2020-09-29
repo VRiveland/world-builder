@@ -12,18 +12,28 @@ def executeWithoutVariables(query):
 
 def executeWithoutReturn(query, variables):
     cur.execute(query, variables)
+    mydtb.commit()
 
 def getWorlds():
     query = "SELECT * FROM Worlds"
     return executeWithoutVariables(query)
 
 def getWorld(worldId):
-    query = ("SELECT * FROM Worlds WHERE world_id=%s")
+    query = ("SELECT * FROM Worlds WHERE world_id = %s")
     return executeWithVariables(query, worldId)
 
 def addWorld(worldTitle, description, story):
     query = ("INSERT INTO Worlds (title, descr, story) Values (%s, %s, %s)")
     executeWithoutReturn(query, [worldTitle, description, story])
+
+def getNewWorldId():
+    query = "SELECT LAST_INSERT_ID() FROM Worlds"
+    temp = executeWithoutVariables(query)
+    return temp[0][0]
+
+def addWorldBoxes(worldId, story, events, countries):
+    query = ("INSERT INTO WorldBoxes (world_id, story, events, countries) VALUES(%s, %s, %s, %s)")
+    executeWithoutReturn(query, [worldId, story, events, countries])
 
 def getWorldEvents(worldId):
     query = ("SELECT * FROM Events WHERE world_id=%s AND event_type='world'")

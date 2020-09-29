@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, redirect, url_for
 from app import app
 import app.helpers as helper
 import app.queries as db
@@ -29,13 +29,16 @@ def add_world():
             info.append(form.story.data)
         else:
             info.append("Not yet added")
-    #TODO: add to database, make the template, add button to add new world to index template
+        db.addWorld(info[0], info[1], info[2])
+        this = db.getNewWorldId()
+        db.addWorldBoxes(this, 0, 0, 0)
+        return redirect(url_for("index"))
+    #TODO: add button to add new world to index template
     return render_template('addWorld.html', title="Add New World", form=form)
 
 @app.route('/world/<worldTitle>/worldId=<worldId>/worldEvent/eventId=<eventId>')
 def world_event(worldTitle, worldId, eventId):
     event = db.getEvent(eventId)
-    print(event[0])
     worldContent = helper.getWorldContent(worldId)
     #TODO: get event boxes
     return render_template('event.html', title=event[0][1], worldContent=worldContent, event=event[0])

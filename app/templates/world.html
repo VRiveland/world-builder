@@ -21,6 +21,7 @@
             <div class="card-body text-center scrollable">
                 <ul class="list-unstyled">
                     <!-- should I only show the first X amount and remove the scrollable class from card-body? -->
+                    {% if worldContent[1] != None %}
                     {% for event in worldContent[1] %}
                         <li>
                             <a class="component" href={{ url_for('world_event', worldId=worldContent[0][0], eventId=event[0], worldTitle=worldContent[0][1]) }}>
@@ -30,6 +31,7 @@
                             </a>
                         </li>
                     {% endfor %}
+                    {% endif %}
                 </ul>
             </div>
         </div>
