@@ -20,11 +20,17 @@ def getWorlds():
 
 def getWorld(worldId):
     query = ("SELECT * FROM Worlds WHERE world_id = %s")
-    return executeWithVariables(query, worldId)
+    world = executeWithVariables(query, worldId)
+    return world[0]
 
 def addWorld(worldTitle, description, story):
     query = ("INSERT INTO Worlds (title, descr, story) Values (%s, %s, %s)")
     executeWithoutReturn(query, [worldTitle, description, story])
+
+#Info contains (worldTitle, description, story, WorldId)
+def updateWorld(info):
+    query = ("UPDATE Worlds SET title=%s, descr=%s, story=%s WHERE world_id=%s")
+    executeWithoutReturn(query, info)
 
 def getNewWorldId():
     query = "SELECT LAST_INSERT_ID() FROM Worlds"

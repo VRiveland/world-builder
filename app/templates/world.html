@@ -6,6 +6,9 @@
     <p class="lead">{{ worldContent[0][2] }}</p>
 {% endblock %}
 {% block worldContent %}
+<div class="row justify-content-center">
+    <a class="btn btn-info m-2 col-11" href={{ url_for('edit_world', worldTitle=worldContent[0][1], worldId=worldContent[0][0]) }}>Edit World</a>
+</div>
 <div class="card-columns">
     {% if showStory == true %}
         <div class="card">

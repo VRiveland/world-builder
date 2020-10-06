@@ -5,7 +5,7 @@ def getWorldContent(worldId):
     events = db.getWorldEvents(worldId)
     if events == []:
         events = None
-    return world[0], events
+    return world, events
 
 def checkBox(boxes, place):
     show = False

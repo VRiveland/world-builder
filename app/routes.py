@@ -32,9 +32,31 @@ def add_world():
         db.addWorld(info[0], info[1], info[2])
         this = db.getNewWorldId()
         db.addWorldBoxes(this, 0, 0, 0)
-        return redirect(url_for("index"))
-    #TODO: add button to add new world to index template
+        return redirect(url_for("world", worldTitle=info[0], worldId=this))
     return render_template('addWorld.html', title="Add New World", form=form)
+
+@app.route('/edit_world/<worldTitle>/worldId=<worldId>', methods=['GET', 'POST'])
+def edit_world(worldTitle, worldId):
+    title = "Edit " + worldTitle
+    form = forms.WorldForm()
+    if form.validate_on_submit():
+        info = [form.title.data]
+        if form.descr.data:
+            info.append(form.descr.data)
+        else:
+            info.append("Not yet added")
+        if form.story.data:
+            info.append(form.story.data)
+        else:
+            info.append("Not yet added")
+        info.append(worldId)
+        db.updateWorld(info)
+        return redirect(url_for("world", worldTitle=info[0], worldId=worldId))
+    this = db.getWorld(worldId)
+    form.title.data = worldTitle
+    form.descr.data = this[2]
+    form.story.data = this[3]
+    return render_template('addWorld.html', title=title, form=form)
 
 @app.route('/world/<worldTitle>/worldId=<worldId>/worldEvent/eventId=<eventId>')
 def world_event(worldTitle, worldId, eventId):
