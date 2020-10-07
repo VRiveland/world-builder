@@ -14,7 +14,8 @@ def index():
 def world(worldTitle, worldId):
     worldContent = helper.getWorldContent(worldId)
     boxes = db.getWorldBoxes(worldId)
-    return render_template('world.html', title=worldTitle, worldContent=worldContent, showEvents=helper.checkBox(boxes[0], 2), showStory=helper.checkBox(boxes[0], 1))
+    form = forms.WorldBoxesForm()
+    return render_template('world.html', title=worldTitle, worldContent=worldContent, showEvents=helper.checkBox(boxes[0], 2), showStory=helper.checkBox(boxes[0], 1), form=form)
 
 @app.route('/add_world', methods=['GET', 'POST'])
 def add_world():

@@ -22,55 +22,11 @@ body {
     text-decoration: none;
 }
 
-/* styling to make sidebar in world base template functional */
-.wrapper {
-    display: flex;
-    align-items: stretch;
+/* style for hiding boxes form */
+#boxes{
+    
 }
 
-#sidebar {
-    min-width: 25vw;
-    max-width: 25vw;
-    min-height: calc(100vh - 70px);
-}
-
-#sidebar.active{
-    margin-left: -25vw;
-}
-
-/* TODO: test this on a smaller screen */
-@media (max-width: 768px) {
-    #sidebar.active {
-        margin-left: -250px;
-    }
-    #sidebar {
-        margin-left: 0;
-        min-width: 250px;
-        max-width: 250px;
-    }
-}
-
-#content{
-    display: block;
-    min-width: 75vw;
-    max-width: 75vw;
-}
-
-#content.active{
-    min-width: 100vw;
-    max-width: 100vw;
-}
-
-/* Style to make sidebar ok looking */
-#sidebar{
-    background-color: darkgray;
-}
-
-#sidebar ul{
-    background-color: gray;
-    padding: 8px;
-}
-
-#sidebar ul ul{
-    background-color: lightgray;
+#boxes.active{
+    
 }
