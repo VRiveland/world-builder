@@ -13,9 +13,7 @@ def index():
 @app.route('/world/<worldTitle>/worldId=<worldId>')
 def world(worldTitle, worldId):
     worldContent = helper.getWorldContent(worldId)
-    boxes = db.getWorldBoxes(worldId)
-    form = forms.WorldBoxesForm()
-    return render_template('world.html', title=worldTitle, worldContent=worldContent, showEvents=helper.checkBox(boxes[0], 2), showStory=helper.checkBox(boxes[0], 1), form=form)
+    return render_template('world.html', title=worldTitle, worldContent=worldContent)
 
 @app.route('/add_world', methods=['GET', 'POST'])
 def add_world():
@@ -32,7 +30,6 @@ def add_world():
             info.append("Not yet added")
         db.addWorld(info[0], info[1], info[2])
         this = db.getNewWorldId()
-        db.addWorldBoxes(this, 0, 0, 0)
         return redirect(url_for("world", worldTitle=info[0], worldId=this))
     return render_template('addWorld.html', title="Add New World", form=form)
 
@@ -63,5 +60,4 @@ def edit_world(worldTitle, worldId):
 def world_event(worldTitle, worldId, eventId):
     event = db.getEvent(eventId)
     worldContent = helper.getWorldContent(worldId)
-    #TODO: get event boxes
     return render_template('event.html', title=event[0][1], worldContent=worldContent, event=event[0])

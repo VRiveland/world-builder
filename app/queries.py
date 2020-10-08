@@ -1,5 +1,6 @@
 from app import cur, mydtb
 
+#Execution
 def executeWithVariables(query, variables):
     cur.execute(query, variables)
     rows = cur.fetchall()
@@ -14,6 +15,7 @@ def executeWithoutReturn(query, variables):
     cur.execute(query, variables)
     mydtb.commit()
 
+#Queries
 def getWorlds():
     query = "SELECT * FROM Worlds"
     return executeWithoutVariables(query)
@@ -37,16 +39,8 @@ def getNewWorldId():
     temp = executeWithoutVariables(query)
     return temp[0][0]
 
-def addWorldBoxes(worldId, story, events, countries):
-    query = ("INSERT INTO WorldBoxes (world_id, story, events, countries) VALUES(%s, %s, %s, %s)")
-    executeWithoutReturn(query, [worldId, story, events, countries])
-
 def getWorldEvents(worldId):
     query = ("SELECT * FROM Events WHERE world_id=%s AND event_type='world'")
-    return executeWithVariables(query, worldId)
-
-def getWorldBoxes(worldId):
-    query = ("SELECT * FROM WorldBoxes WHERE world_id=%s")
     return executeWithVariables(query, worldId)
 
 def getEvent(eventId):

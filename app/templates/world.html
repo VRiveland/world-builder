@@ -8,26 +8,14 @@
 {% block worldContent %}
 <div class="row justify-content-center">
     <a class="btn btn-info m-2 col-11" href={{ url_for('edit_world', worldTitle=worldContent[0][1], worldId=worldContent[0][0]) }}>Edit World</a>
-    <!-- TODO: Check possibility of using collapse as done in worldBase for the sidebar -->
-    <a class="btn btn-info m-2 col-11" id="boxesSelector" href="">Edit World Boxes</a>
-    <div class="card col-sm-12 col-lg-10 p-2 text-center" id="boxes">
-        <form action="", method="POST" novalidate>
-            <!-- TODO: change the generation of the subfields of the shown field -->
-            {{ wtf.form_field(form.shown) }}
-            {{ wtf.form_field(form.submit, class="btn btn-info") }}
-        </form>
-    </div>
 </div>
 <div class="card-columns">
-    {% if showStory == true %}
         <div class="card">
             <div class="card-header">World Story</div>
             <div class="card-body text-center scrollable">
                 <p class="card-text">{{ worldContent[0][3] }}</p>
             </div>
         </div>
-    {% endif %}
-    {% if showEvents == true %}
         <div class="card">
             <div class="card-header">Events</div>
             <div class="card-body text-center scrollable">
@@ -47,6 +35,5 @@
                 </ul>
             </div>
         </div>
-    {% endif %}
 </div>
 {% endblock %}

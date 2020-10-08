@@ -6,9 +6,3 @@ def getWorldContent(worldId):
     if events == []:
         events = None
     return world, events
-
-def checkBox(boxes, place):
-    show = False
-    if boxes[place] == 1:
-        show = True
-    return show

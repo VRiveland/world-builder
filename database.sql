@@ -7,14 +7,6 @@ CREATE TABLE IF NOT EXISTS Worlds (
     story TEXT
 );
 
-CREATE TABLE IF NOT EXISTS WorldBoxes (
-    world_id INT UNSIGNED NOT NULL PRIMARY KEY,
-    story BOOLEAN,
-    events BOOLEAN,
-    countries BOOLEAN,
-    FOREIGN KEY (world_id) REFERENCES Worlds (world_id) ON DELETE CASCADE
-);
-
 CREATE TABLE IF NOT EXISTS Countries (
     country_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(32),
